@@ -135,6 +135,9 @@ def load_and_prepare():
 @st.cache_resource
 def train_models(df):
     df2 = df.copy()
+    # Ensure TotalCharges is numeric and has no NaN
+    df2["TotalCharges"] = pd.to_numeric(df2["TotalCharges"], errors="coerce")
+    df2["TotalCharges"] = df2["TotalCharges"].fillna(df2["TotalCharges"].median())
     df2["Churn"] = df2["Churn"].map({"Yes": 1, "No": 0})
     le = LabelEncoder()
     cat_cols = df2.select_dtypes("object").columns.tolist()
@@ -142,6 +145,10 @@ def train_models(df):
         df2[col] = le.fit_transform(df2[col].astype(str))
     X = df2.drop(columns=["Churn"])
     y = df2["Churn"]
+    # Drop any remaining rows with NaN
+    mask = X.notna().all(axis=1) & y.notna()
+    X = X[mask]
+    y = y[mask]
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
