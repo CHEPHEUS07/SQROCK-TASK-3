@@ -149,7 +149,7 @@ def train_models(df):
     Xs_train = scaler.fit_transform(X_train)
     Xs_test  = scaler.transform(X_test)
 
-    lr = LogisticRegression(max_iter=1000, random_state=42, class_weight="balanced")
+    lr = LogisticRegression(max_iter=1000, random_state=42, class_weight="balanced", solver="liblinear")
     lr.fit(Xs_train, y_train)
     dt = DecisionTreeClassifier(max_depth=5, min_samples_leaf=20,
                                 random_state=42, class_weight="balanced")
