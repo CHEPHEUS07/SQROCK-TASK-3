@@ -1,6 +1,6 @@
 # Customer Churn Prediction System
 
-## SQROCK Week 3 Task — Machine Learning Project
+##  Machine Learning Project
 
 A complete **Customer Churn Prediction System** built with Python and Streamlit.
 
