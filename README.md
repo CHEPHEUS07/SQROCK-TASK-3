@@ -5,7 +5,7 @@
 A complete **Customer Churn Prediction System** built with Python and Streamlit.
 
 ### 🚀 Live App
-> Deployed on Streamlit Cloud
+> Live at: [https://churnsight-ai.onrender.com/](https://churnsight-ai.onrender.com/)
 
 ### 📊 Features
 - **EDA & Insights** — Churn distribution, contract analysis, tenure & charges
